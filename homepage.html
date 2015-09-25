@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+ <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/><script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<style type="text/css">
+#map {
+  width: 400px;
+  height: 600px;
+  display: inline-block;
+}
+
+#bc {
+	display: inline-block;
+	padding-bottom: 100px;
+	padding-left: 20px;
+}
+
+svg {
+  position: relative;
+}
+
+path {
+  fill: #000;
+  fill-opacity: .8;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+path:hover {
+  fill: red;
+}
+
+.q0-9 { fill:rgb(247,251,255); }
+.q1-9 { fill:rgb(222,235,247); }
+.q2-9 { fill:rgb(198,219,239); }
+.q3-9 { fill:rgb(158,202,225); }
+.q4-9 { fill:rgb(107,174,214); }
+.q5-9 { fill:rgb(66,146,198); }
+.q6-9 { fill:rgb(33,113,181); }
+.q7-9 { fill:rgb(8,81,156); }
+.q8-9 { fill:rgb(8,48,107); }
+.clear {fill-opacity: 0.00; stroke-width: 0px;}
+
+path.clear:hover {
+  fill-opacity: 0;
+}
+
+
+/* Floats */
+
+.left {float: left;}
+.right {float: right;}
+
+.clear,.clearer {clear: both;}
+.clearer {
+  display: block;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+}
+
+
+/*
+  Example specifics
+------------------------------------------------------------------- */
+
+/* Layout */
+
+#center-wrapper {
+  margin: 0 auto;
+  width: 920px;
+}
+
+
+/* Columns */
+
+.column {
+  margin-left: 2%;
+  width: 32%;
+}
+.column.first {margin-left: 0;}
+
+
+/* Sortable items */
+
+.sortable-list {
+  background-color: #F93;
+  list-style: none;
+  margin: 0;
+  min-height: 60px;
+  padding: 10px;
+}
+.sortable-item {
+  background-color: #FFF;
+  border: 1px solid #000;
+  cursor: move;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Containment area */
+
+#containment {
+  background-color: #FFA;
+  height: 230px;
+}
+
+
+/* Item placeholder (visual helper) */
+
+.placeholder {
+  background-color: #BFB;
+  border: 1px dashed #666;
+  height: 58px;
+  margin-bottom: 5px;
+}
+
+
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+  console.log('hi')
+  // Example 1.1: A single sortable list
+  $('#example-1-1 .sortable-list').sortable();
+
+  // Example 1.2: Sortable and connectable lists
+  $('#example-1-2 .sortable-list').sortable({
+    connectWith: '#example-1-2 .sortable-list'
+  });
+
+  // Example 1.3: Sortable and connectable lists with visual helper
+  $('#example-1-3 .sortable-list').sortable({
+    connectWith: '#example-1-3 .sortable-list',
+    placeholder: 'placeholder',
+  });
+
+  // Example 1.4: Sortable and connectable lists (within containment)
+  $('#example-1-4 .sortable-list').sortable({
+    connectWith: '#example-1-4 .sortable-list',
+    containment: '#containment'
+  });
+
+});
+</script>
+</head>
+
+<body >
+<div id="map"></div>
+<div id='bc'></div>
+
+  <div class="dhe-example-section" id="ex-1-3">
+    <div class="dhe-example-section-header">
+      <h3 class="dhe-h3 dhe-example-title">Example 1.3: Sortable and connectable lists with visual helper</h3>
+      <div class="dhe-example-description">Drag and drop items within and between lists. A visual helper is displayed indicating where the item will be positioned if dropped.</div>
+    </div>
+    <div class="dhe-example-section-content">
+
+      <!-- BEGIN: XHTML for example 1.3 -->
+
+      <div id="example-1-3">
+
+        <div class="column left first">
+
+          <ul class="sortable-list">
+            <li class="sortable-item">Sortable item A</li>
+            <li class="sortable-item">Sortable item B</li>
+          </ul>
+
+        </div>
+
+        <div class="column left">
+
+          <ul class="sortable-list">
+            <li class="sortable-item">Sortable item C</li>
+            <li class="sortable-item">Sortable item D</li>
+          </ul>
+
+        </div>
+
+        <div class="column left">
+
+          <ul class="sortable-list">
+            <li class="sortable-item">Sortable item E</li>
+          </ul>
+
+        </div>
+
+        <div class="clearer">&nbsp;</div>
+
+      </div>
+
+      <!-- END: XHTML for example 1.3 -->
+
+    </div>
+  </div>
+<script>
+
+
+        var map = L.map('map').setView([47.6097, -122.3331], 11);
+L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.high-contrast/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			id: 'mapbox.streets'
+		}).addTo(map);
+
+
+
+var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+    g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+
+var rateById = d3.map();
+
+var quantize = d3.scale.quantize()
+    .domain([0, 2140]) //2140 257
+    .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+
+
+queue()
+    .defer(d3.json, "Seattle.json")
+    .await(ready);
+
+
+function ready(error, collection){
+	if (error) throw error;
+  
+  var transform = d3.geo.transform({point: projectPoint}),
+      path = d3.geo.path().projection(transform);
+
+  var feature = g.selectAll("path")
+        .data(collection.features)
+    	.enter().append("path")
+
+  map.on("viewreset", reset);
+  reset();
+
+
+    function reset() {
+    var bounds = path.bounds(collection),
+        topLeft = bounds[0],
+        bottomRight = bounds[1];
+
+    svg.attr("width", bottomRight[0] - topLeft[0])
+        .attr("height", bottomRight[1] - topLeft[1])
+        .style("left", topLeft[0] + "px")
+        .style("top", topLeft[1] + "px");
+
+    g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+
+    feature.attr("d", path);
+  }
+
+  // Use Leaflet to implement a D3 geometric transformation.
+  function projectPoint(x, y) {
+    var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+    this.stream.point(point.x, point.y);
+  }
+}
+  // Reposition the SVG to cover the features.
+
+
+</script>
