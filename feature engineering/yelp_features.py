@@ -47,6 +47,7 @@ class YelpFeatures(object):
 		self.clean_data()
 		self.get_counts()
 		self.get_percentages()
+		self.df = self.df.rename(columns={'hood_id':'id'})
 		return self.df
 
 	def clean_data(self):

@@ -13,7 +13,7 @@ class WalkscoreFeatures(object):
 		state = 'WA'
 		client = MongoClient('localhost', 27017)
 		db = client['neighborhood_recommender']
-		yelp_collection = db['walkscores' + '_' + city + '_' + state]
+		yelp_collection = db['ws_final' + '_' + city + '_' + state]
 		cursor = yelp_collection.find()
 		data = [score for score in cursor]
 		self.df = pd.DataFrame(data)
@@ -22,7 +22,9 @@ class WalkscoreFeatures(object):
 	def engineer_features(self):
 		means = self.df.groupby('hood_id')['transit_score','walkscore'].mean()
 		self.df = pd.DataFrame(means).reset_index()
+		self.df = self.df.rename(columns={'hood_id':'id'})
 		return self.df
 
 if __name__ == '__main__':
 	w = WalkscoreFeatures('Seattle', 'WA')
+	print w.engineer_features()

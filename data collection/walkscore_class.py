@@ -154,6 +154,8 @@ class Walkscore(object):
 	            lat, lon = 'NA', 'NA'
 	        self.homes[i]['latitude'] = lat
 	        self.homes[i]['longitude'] = lon      
+	        time.sleep(1)
+
 	        
 	def query_walkscore(self, address, lat, lon, kind):
 	    '''
