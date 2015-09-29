@@ -84,10 +84,19 @@ class GreatSchools(object):
 				parRating = school.find('parentRating').text
 			except:
 				parRating = 'NA'
+			try:
+				gradeRange = school.find('gradeRange').text
+			except:
+				gradeRange = 'NA'
 
+			try:
+				s_type = school.find('type').text
+			except:
+				s_type = 'NA'
+				
 			latitude = school.find('lat').text
 			longitude = school.find('lon').text
-			row = {'name': name, 'gsRating': gsRating, 'parRating': parRating, 'latitude': latitude, 'longitude': longitude}
+			row = {'name': name, 'gsRating': gsRating, 'type': s_type ,'gradeRange': gradeRange,'parRating': parRating, 'latitude': latitude, 'longitude': longitude}
 			self.gs_collection.insert(row)
 
 
