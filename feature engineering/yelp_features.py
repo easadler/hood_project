@@ -90,7 +90,7 @@ class YelpFeatures(object):
 		for col in self.categories.keys():
 			self.df[col + '_perc'] = self.df[col] / self.df['yelp_total'].astype(float)
 
-		print self.df
+
 
 
 if __name__ == '__main__':

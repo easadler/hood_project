@@ -17,7 +17,6 @@ class WalkscoreFeatures(object):
 		cursor = yelp_collection.find()
 		data = [score for score in cursor]
 		self.df = pd.DataFrame(data)
-		print self.df.columns
 
 	def engineer_features(self):
 		means = self.df.groupby('hood_id')['transit_score','walkscore'].mean()

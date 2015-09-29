@@ -48,7 +48,8 @@ class CombineData(object):
 if __name__ == '__main__':
 	cb = CombineData('Seattle', 'WA')
 	cb.load_data_and_engineer_features()
-	print cb.combine_datasets()
+	df = cb.combine_datasets()
+	df.to_csv('final.csv', index = False)
 
 
 
