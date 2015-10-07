@@ -1,9 +1,9 @@
 
-{'Ingraham': ['Broadview','Bitter Lake', 'Haller Lake','Blue Ridge','Pinehurst', 'North Beach', 'Olympic Manor', 'Crown Hill', 'Greenwood'], 'Ballard': ['Sunset Hill', 'Loyal Heights', 'Whittier Heights', 'Phinney Ridge', 'Ballard', 'Interbay', 'Magnolia', 'Queene Anne','Freemont', 'Lower Queene Anne', 'Westlake']
-
+highschools = {'Ingraham': ['Broadview','Bitter Lake', 'Haller Lake','Blue Ridge','Pinehurst', 'North Beach', 'Olympic Manor', 'Crown Hill', 'Greenwood'], 
+'Ballard': ['Sunset Hill', 'Loyal Heights', 'Whittier Heights', 'Phinney Ridge', 'Ballard', 'Interbay', 'Magnolia', 'Queene Anne','Freemont', 'Lower Queene Anne', 'Westlake']
 'Nathan Hale': ['Olympic Hill', 'Cedar Park', 'Northgate', 'Maple Leaf', 'Victory Heights', 'Meadowbrook', 'Mathews Beach', 'Wedgewood']
 
-'Roosevelt': ['Ridge View', 'Sand Point','Roosevelt','Ravenna','Bryant', 'Hawthorne Hills', 'Windermere', 'Laurelhurst', 'University District', 'Wallingford', 'Green Lake']
+'Roosevelt': ['View Ridge', 'Sand Point','Roosevelt','Ravenna','Bryant', 'Hawthorne Hills', 'Windermere', 'Laurelhurst', 'University District', 'Wallingford', 'Green Lake']
 
 'Garfield': ['Portage Bay','Eastlake','Montlake', 'Capitol Hill', 'Broadmoor', 'Madison Park', 'Denny-Blaine', 'Madison Valley','South Lake Union', 'Belltown','Downtown', 'Pioneer Square', 'Internation District', 'Madrona', 'Leschi', 'Atlantic']
 
@@ -11,3 +11,17 @@
 'Rainier Beach': ['Georgetown', 'Rainier Beach']
 'West Seattle': ['Alki', 'Admiral', 'West Seattle', 'North Delridge', 'Riverview']
 'Chief Sealth': ['High Point', 'Fauntleroy', 'Arbor Heights', 'Roxhill', 'Highland Park', 'South Park']}
+
+middleschools = 
+{'Whitman': ['Sunset Hill', 'Loyal Heights','Broadview','Bitter Lake', 'Haller Lake','Blue Ridge','Pinehurst', 'North Beach', 'Olympic Manor', 'Crown Hill', 'Greenwood'], 
+'Hamilton': ['Phinney Ridge', 'Ballard', 'Freemont', 'Wallingford']
+'Mclure': ['Interbay', 'Magnolia', 'Queene Anne','Lower Queene Anne', 'Westlake','Belltown', 'Downtown', 'South Lake Union'],
+'Eckstein': ['Maple Leaf','Wedgewood','View Ridge', 'Sand Point','Roosevelt','Ravenna','Bryant', 'Hawthorne Hills', 'Windermere', 'Laurelhurst', 'University District', 'Green Lake'],
+'Jane Addams': ['Olympic Hill', 'Cedar Park', 'Northgate',  'Victory Heights', 'Meadowbrook', 'Mathews Beach'],
+'Madison': ['Alki', 'Admiral', 'West Seattle', 'North Delridge', 'Riverview'],
+'Denny': ['High Point', 'Fauntleroy', 'Arbor Heights', 'Roxhill', 'Highland Park', 'South Park'],
+'Washington': ['Portage Bay','Eastlake','Montlake', 'Capitol Hill', 'Broadmoor', 'Madison Park', 'Denny-Blaine', 'Madison Valley', 'Pioneer Square', 'Internation District', 'Madrona', 'Leschi', 'Atlantic', 'Mount Baker'],
+'Mercer': ['Beacon Hill', 'Columbia City', 'Georgetown', 'Industrial District']
+'Aki Kurose': ['Rainier Beach', 'Seward Park', 'Brighton']}
+
+

@@ -88,12 +88,11 @@ class GreatSchools(object):
 				gradeRange = school.find('gradeRange').text
 			except:
 				gradeRange = 'NA'
-
 			try:
 				s_type = school.find('type').text
 			except:
 				s_type = 'NA'
-				
+
 			latitude = school.find('lat').text
 			longitude = school.find('lon').text
 			row = {'name': name, 'gsRating': gsRating, 'type': s_type ,'gradeRange': gradeRange,'parRating': parRating, 'latitude': latitude, 'longitude': longitude}

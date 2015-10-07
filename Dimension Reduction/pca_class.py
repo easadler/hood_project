@@ -37,8 +37,8 @@ class ReduceFeatures(object):
 		return self.df_c
 
 
-	def sparse_pca(self, n_components):
-		pca = SparsePCA(n_components = 3)
+	def sparse_pca(self, n_components, alpha):
+		pca = SparsePCA(n_components = 3, alpha = alpha)
 		self.X = pca.fit_transform(self.X)
 		self.df_c = pd.DataFrame(pca.components_.T, index = self.crimes, columns = [1,2,3])
 		return self.df_c
@@ -49,7 +49,7 @@ class ReduceFeatures(object):
 		mask = (self.df.dtypes == np.float64) | (self.df.dtypes == np.int)
 		df_sub = self.df.ix[:, mask]
 		df_sub = df_sub.dropna(axis = 1, thresh = non_na_thresh)
-		df_sub = df_sub.fillna(0)
+		#df_sub = df_sub.fillna(0)
 		imp = preprocessing.Imputer(axis=0)
 		X = imp.fit_transform(df_sub)
 		X_centered = preprocessing.scale(X)
@@ -75,7 +75,7 @@ class ReduceFeatures(object):
 			for w in i:
 			    cols.append(w)
 			if len(cols) > 1:
-				df_new[str(self.crimes[cols].values)] = np.mean(self.X[:,cols], axis = 1)
+				df_new[str(self.crimes[cols])] = np.mean(self.X[:,cols], axis = 1)
 			else:
 			    df_new[str(self.crimes[cols[0]])] = self.X[:,cols[0]]
 
