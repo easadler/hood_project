@@ -6,12 +6,14 @@ from bs4 import BeautifulSoup, UnicodeDammit
 import xmltodict
 from collections import defaultdict
 from pymongo import MongoClient
+import socks
+import socket
 
 class Neighborhoods(object):
 	def __init__(self, city, state):
 		client = MongoClient()
 		self.db = client['neighborhood_recommender']
-		self.hoods = self.db['hood_data' + '_' + city + '_' + state]
+		self.hoods = self.db['hoods']
 		self.state = state
 		self.city = city
 
