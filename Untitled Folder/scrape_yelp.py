@@ -21,7 +21,7 @@ class ScrapeYelp(object):
 		self.errors = []
 
 		client = MongoClient('localhost', 27017)
-		db = client['neighborhood_recommender']
+		db = client['hood_app']
 		self.collection = db['yelp_scrape']
 
 	def scrape_GS(self):
@@ -53,7 +53,7 @@ class ScrapeYelp(object):
 	def _extract(self, r):
 		bs = BeautifulSoup(r.content)
 		try:
-		    pages = str(bs.find('div', {'class': 'page-of-pages arrange_unit arrange_unit--fill'}).text.strip()[-1])
+		    pages = str(bs.find('div', {'class': 'page-of-pages arrange_unit arrange_unit--fill'}).text.split()[-1].strip())
 		except:
 		    pages = 0
 		if pages == '1':
