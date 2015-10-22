@@ -19,9 +19,9 @@ class WalkscoreFeatures(object):
 		self.df = pd.DataFrame(data)
 
 	def engineer_features(self):
-		means = self.df.groupby('hood_id')['transit_score','walkscore'].mean()
+		means = self.df.groupby('hood_name')['transit_score','walkscore'].mean()
 		self.df = pd.DataFrame(means).reset_index()
-		self.df = self.df.rename(columns={'hood_id':'id'})
+		self.df = self.df.rename(columns={'hood_name':'hood'})
 		return self.df
 
 if __name__ == '__main__':
